@@ -57,7 +57,7 @@ public class AccountService {
 		if (!account.isPresent())
 			throw new AccountNotFoundException(id);
 		HttpEntity entity = new HttpEntity(headers);
-//		Customer customer = restTemplate.getForObject(GET_CUSTOMER_ENDPOINT_URL + account.get().getCustomerId(), Customer.class);
+//		Customer customer = restTemplate.getForObject("https://customerserviceomnirio.herokuapp.com/" + account.get().getCustomerId(), Customer.class);
 		ResponseEntity<Customer> customer = restTemplate.exchange(GET_CUSTOMER_ENDPOINT_URL + account.get().getCustomerId(), HttpMethod.GET, entity, Customer.class);
 		AccountUser response = AccountUser.generateResponse(account.get(),customer.getBody());
 		return response;
