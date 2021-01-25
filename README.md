@@ -18,6 +18,22 @@ Request:{
 			
 		}
 
+POST
+URL:localhost:8083/accountadd
+Header :
+Authorization:<jwtToken>(will get from customer service)
+
+		
+{
+			"accountType": "Saving",
+			"openDate": "2019-01-02T06:29:59.862+00:00",
+			"branch": "abc",
+			"minorIndicator": "T",
+			"customerName":"saving",
+            "customerId": 1
+			
+	}
+
 GET(return all account)
 URL:localhost:8083/account
 Response:[
