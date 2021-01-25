@@ -3,11 +3,10 @@ package com.account.services;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -18,11 +17,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.account.dto.AccountDto;
 import com.account.model.Account;
 import com.account.model.AccountUser;
 import com.account.model.Customer;
 import com.account.repository.AccountRepository;
 import com.custom.exception.AccountNotFoundException;
+
 
 
 @Service
@@ -89,6 +90,21 @@ public class AccountService {
 		newAccount.setMinorIndicator(isMinor);
 		System.out.println(customerresponse.getBody().getId());
 		accountRepository.save(newAccount);
+	}
+	
+public AccountDto saveCustomerAccount(AccountDto accountDto, HttpHeaders headers) {
+		
+		Account newAccount = new Account();
+		newAccount.setBranch(accountDto.getBranch());
+		newAccount.setAccountType(accountDto.getAccountType());
+		newAccount.setCustomerId(accountDto.getCustomerId());
+		newAccount.setCustomerName(accountDto.getCustomerName());
+		newAccount.setOpenDate(accountDto.getOpenDate());
+		newAccount.setMinorIndicator(accountDto.getMinorIndicator());
+		ModelMapper mapper = new ModelMapper();
+		return mapper.map(accountRepository.saveAndFlush(newAccount),AccountDto.class);
+		
+	
 	}
 
 	public Account updateAccount(Account account, long id) {

@@ -9,7 +9,7 @@ class TestRest {
 	@RequestMapping("test")
 	public String display() {
 		System.out.println("tefsccbc");
-		return "working account ms test ......";
+		return "working account ms ......";
 	}
 
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.account.dto.AccountDto;
 import com.account.model.Account;
 import com.account.model.AccountUser;
 import com.account.services.AccountService;
@@ -43,6 +44,13 @@ public class AccountController {
 	public void addAccount(@RequestBody AccountUser account, @RequestHeader HttpHeaders headers) {
 
 		accountService.saveAccount(account,headers);
+
+	}
+	
+	@RequestMapping(value = "accountadd", method = RequestMethod.POST)
+	public AccountDto addCustomerAccount(@RequestBody AccountDto accountDto, @RequestHeader HttpHeaders headers) {
+		System.out.println("adddddd");
+		return accountService.saveCustomerAccount(accountDto,headers);
 
 	}
 
