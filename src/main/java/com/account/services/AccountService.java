@@ -40,11 +40,11 @@ public class AccountService {
 	
 	//private static final String DATE_FORMATTER = "yyyy-MM-dd";
 	
-	private static final String GET_CUSTOMERS_ENDPOINT_URL = "http://customer-service/user/";
-    private static final String GET_CUSTOMER_ENDPOINT_URL = "http://customer-service/user/";
-    private static final String CREATE_CUSTOMER_ENDPOINT_URL = "http://customer-service/useradd";
-    private static final String UPDATE_CUSTOMER_ENDPOINT_URL = "http://customer-service/user/{id}";
-    private static final String DELETE_CUSTOMER_ENDPOINT_URL = "http://customer-service/user/{id}";
+	private static final String GET_CUSTOMERS_ENDPOINT_URL = "https://customer-service/user/";
+    private static final String GET_CUSTOMER_ENDPOINT_URL = "https://customer-service/user/";
+    private static final String CREATE_CUSTOMER_ENDPOINT_URL = "https://customer-service/useradd";
+    private static final String UPDATE_CUSTOMER_ENDPOINT_URL = "https://customer-service/user/{id}";
+    private static final String DELETE_CUSTOMER_ENDPOINT_URL = "https://customer-service/user/{id}";
 	
 
 	public List<Account> getAllAccount() {
