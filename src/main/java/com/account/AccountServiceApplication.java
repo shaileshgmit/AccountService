@@ -1,5 +1,6 @@
 package com.account;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -21,6 +22,11 @@ public class AccountServiceApplication {
 	public RestTemplate getRestTemplate() {
 		return new RestTemplate();
 	}
+	
+	 @Bean
+	    public ModelMapper getModelMapper() {
+	    	return new ModelMapper();
+	    }
 	public static void main(String[] args) {
 		SpringApplication.run(AccountServiceApplication.class, args);
 	}

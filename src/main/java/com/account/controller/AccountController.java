@@ -18,25 +18,25 @@ import org.springframework.web.bind.annotation.RestController;
 import com.account.dto.AccountDto;
 import com.account.model.Account;
 import com.account.model.AccountUser;
-import com.account.services.AccountService;
+import com.account.services.AccountServiceImpl;
 
 
 @RestController
 public class AccountController {
 
 	@Autowired
-	private AccountService accountService;
+	private AccountServiceImpl accountService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
 	@RequestMapping(value = "account", method = RequestMethod.GET)
-	public List<Account> getAllAccount() {
+	public ResponseEntity<List<AccountDto>> getAllAccount() {
 		
 		return accountService.getAllAccount();
 	}
 
 	@RequestMapping(value = "account/{id}", method = RequestMethod.GET)
-	public AccountUser getAccount(@PathVariable long id, @RequestHeader HttpHeaders headers) {
+	public ResponseEntity<AccountUser> getAccount(@PathVariable long id, @RequestHeader HttpHeaders headers) {
 		return accountService.getAccount(id,headers);
 	}
 
@@ -48,21 +48,20 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value = "accountadd", method = RequestMethod.POST)
-	public AccountDto addCustomerAccount(@RequestBody AccountDto accountDto, @RequestHeader HttpHeaders headers) {
-		System.out.println("adddddd");
+	public ResponseEntity<AccountDto> addCustomerAccount(@RequestBody AccountDto accountDto, @RequestHeader HttpHeaders headers) {
 		return accountService.saveCustomerAccount(accountDto,headers);
 
 	}
 
 	@PutMapping(value = "account/{id}")
-	public Account updateAccount(@RequestBody Account account, @PathVariable("id") long id) {
+	public ResponseEntity<AccountDto> updateAccount(@RequestBody AccountDto accountDto, @PathVariable("id") long id) {
 
-		return accountService.updateAccount(account, id);
+		return accountService.updateAccount(accountDto, id);
 
 	}
 
 	@RequestMapping(value = "account/{id}", method = RequestMethod.DELETE)
-	public String  deleteAccount(@PathVariable long id, @RequestHeader HttpHeaders headers) {
+	public ResponseEntity<Void>  deleteAccount(@PathVariable long id, @RequestHeader HttpHeaders headers) {
 		return accountService.deleteAccount(id,headers);
 
 	}
